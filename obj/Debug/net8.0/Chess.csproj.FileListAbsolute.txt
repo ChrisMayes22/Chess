@@ -1,0 +1,14 @@
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/bin/Debug/net8.0/Chess
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/bin/Debug/net8.0/Chess.deps.json
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/bin/Debug/net8.0/Chess.runtimeconfig.json
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/bin/Debug/net8.0/Chess.dll
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/bin/Debug/net8.0/Chess.pdb
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.GeneratedMSBuildEditorConfig.editorconfig
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.AssemblyInfoInputs.cache
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.AssemblyInfo.cs
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.csproj.CoreCompileInputs.cache
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.dll
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/refint/Chess.dll
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.pdb
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/Chess.genruntimeconfig.cache
+/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/Debug/net8.0/ref/Chess.dll
