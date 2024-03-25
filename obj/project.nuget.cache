@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ynI2cOaRWsTBHvzpU6HbqdwG4fR1vRN8/rbKN6d2g5gLAxBYH1Ik202TeRzuvVny4tZU+tXiZtSCt/3J1zgv3w==",
+  "dgSpecHash": "8lXY4bezR1CY8GRt0da92GEMjqR5FJdt4O3bmKjg7T8QRi7TML6sZKpMMrvu3TJXpcvhKGrstTD6BHRRYI3njw==",
   "success": true,
-  "projectFilePath": "/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/Chess.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/maddielemons/Documents/coding/Chess/Chess.csproj",
+  "expectedPackageFiles": [
+    "/Users/maddielemons/.nuget/packages/spectre.console/0.48.0/spectre.console.0.48.0.nupkg.sha512",
+    "/Users/maddielemons/.nuget/packages/spectre.console.cli/0.48.0/spectre.console.cli.0.48.0.nupkg.sha512",
+    "/Users/maddielemons/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512"
+  ],
   "logs": []
 }

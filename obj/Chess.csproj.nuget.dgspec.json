@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/Chess.csproj": {}
+    "/Users/maddielemons/Documents/coding/Chess/Chess.csproj": {}
   },
   "projects": {
-    "/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/Chess.csproj": {
+    "/Users/maddielemons/Documents/coding/Chess/Chess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/Chess.csproj",
+        "projectUniqueName": "/Users/maddielemons/Documents/coding/Chess/Chess.csproj",
         "projectName": "Chess",
-        "projectPath": "/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/Chess.csproj",
+        "projectPath": "/Users/maddielemons/Documents/coding/Chess/Chess.csproj",
         "packagesPath": "/Users/maddielemons/.nuget/packages/",
-        "outputPath": "/Users/maddielemons/Documents/coding/c_sharp_practice/Chess/obj/",
+        "outputPath": "/Users/maddielemons/Documents/coding/Chess/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/maddielemons/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.48.0, )"
+            },
+            "Spectre.Console.Cli": {
+              "target": "Package",
+              "version": "[0.48.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
