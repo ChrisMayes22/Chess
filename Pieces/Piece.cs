@@ -1,16 +1,23 @@
 using System;
+using System.Reflection.PortableExecutable;
 
 namespace ChessPieces
 {
     public abstract class Piece
     {
-        private string color;
-        private int[2] position;
+        private int[] position;
 
-        public Piece(string color, int row, int col)
+        public int[] Position
         {
-            this.color = color;
-            this.position = new int[2] { row, col };
+            get { return position; }
+            set { position = value; }
+        }
+
+        public string Character { get; protected set; }
+
+        public Piece(int row, int col)
+        {
+            this.Position = new int[2] { row, col };
         }
 
         // public abstract void Move();

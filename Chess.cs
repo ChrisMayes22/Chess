@@ -2,72 +2,48 @@ using System;
 using System.Reflection.PortableExecutable;
 using ChessPieces;
 using Spectre.Console;
+using Spectre.Console.Rendering;
 
 class Program
 {
     static void Main()
     {
-        GameManager.ShowGameStartOptions();
+        new Board().DrawBoard();
     }
 }
 
 class Board
 {
-
-    //TODO: Encapsulate position within piece instances and find 
+    //TODO: Encapsulate position within piece instances and find
     // a more readable way to intialize the board.
-    private Dictionary<string, (int, int)> Positions =
-        new()
-        {
-            { "WhiteRook1", (0, 0) },
-            { "WhiteKnight1", (0, 1) },
-            { "WhiteBishop1", (0, 2) },
-            { "WhiteKing", (0, 3) },
-            { "WhiteBishop2", (0, 5) },
-            { "WhiteKnight2", (0, 6) },
-            { "WhiteRook2", (0, 7) },
-            { "WhitePawn1", (1, 0) },
-            { "WhitePawn2", (1, 1) },
-            { "WhitePawn3", (1, 2) },
-            { "WhitePawn4", (1, 3) },
-            { "WhitePawn5", (1, 4) },
-            { "WhitePawn6", (1, 5) },
-            { "WhitePawn7", (1, 6) },
-            { "WhitePawn8", (1, 7) },
-            { "BlackRook1", (7, 0) },
-            { "BlackKnight1", (7, 1) },
-            { "BlackBishop1", (7, 2) },
-            { "BlackKing", (7, 3) },
-            { "BlackQueen", (7, 4) },
-            { "BlackBishop2", (7, 5) },
-            { "BlackKnight2", (7, 6) },
-            { "BlackRook2", (7, 7) },
-            { "BlackPawn1", (6, 0) },
-            { "BlackPawn2", (6, 1) },
-            { "BlackPawn3", (6, 2) },
-            { "BlackPawn4", (6, 3) },
-            { "BlackPawn5", (6, 4) },
-            { "BlackPawn6", (6, 5) },
-            { "BlackPawn7", (6, 6) },
-            { "BlackPawn8", (6, 7) }
-        };
+    private string[][] _board =
+    [
+        [" 1 ", " ♜ ", " ♞ ", " ♝ ", " ♛ ", " ♚ ", " ♝ ", " ♞ ", " ♜ "],
+        [" 2 ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ "],
+        [" 3 ", " □ ", " ■ ", " □ ", " ■ ", " □ ", " ■ ", " □ ", " ■ "],
+        [" 4 ", " ■ ", " □ ", " ■ ", " □ ", " ■ ", " □ ", " ■ ", " □ "],
+        [" 5 ", " □ ", " ■ ", " □ ", " ■ ", " □ ", " ■ ", " □ ", " ■ "],
+        [" 6 ", " ■ ", " □ ", " ■ ", " □ ", " ■ ", " □ ", " ■ ", " □ "],
+        [" 7 ", " ♙ ", " ♙ ", " ♙ ", " ♙ ", " ♙ ", " ♙ ", " ♙ ", " ♙ "],
+        [" 8 ", " ♖ ", " ♘ ", " ♗ ", " ♕ ", " ♔ ", " ♗ ", " ♘ ", " ♖ "],
+        ["   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "]
+    ];
+
+    public string getPieceAtCoordinate(int row, int col)
+    {
+        return this._board[row][col];
+    }
 
     /// <summary>
     /// Draws a checkerboard pattern of the specified size.
     /// </summary>
     /// <param name="size">The size of the board to draw.</param>
-    public void DrawBoard(int size)
+    public void DrawBoard()
     {
-        string color = " □ ";
-        for (int i = 0; i < size; i++)
+        foreach (string[] line in _board)
         {
-            for (int j = 0; j < size; j++)
-            {
-                AnsiConsole.Write(color);
-                color = (color == " □ ") ? " ■ " : " □ ";
-            }
-            color = (color == " □ ") ? " ■ " : " □ ";
-            AnsiConsole.WriteLine();
+            string row = string.Join("", line);
+            AnsiConsole.WriteLine(row);
         }
     }
 }
@@ -93,5 +69,83 @@ class GameManager
         }
     }
 
-    public static void StartGame() { }
+    public static void RunGame()
+    {
+        var board = new Board();
+        while (true)
+        {
+            board.DrawBoard();
+        }
+    }
+
+    public static void TakeTurn(string playerColor, Board board)
+    {
+        string[] allowedPieces;
+        if (playerColor == "black")
+        {
+            allowedPieces = ["♙", "♖", "♘", "♗", "♕", "♔"];
+        }
+        else
+        {
+            allowedPieces = ["♟", "♜", "♞", "♝", "♛", "♚"];
+        }
+
+        (int, int) userMove = GetCoordinate();
+    }
+
+    private static (int, int) GetCoordinate()
+    {
+        var letterDictionary = new Dictionary<string, int>()
+        {
+            { "A", 0 },
+            { "B", 1 },
+            { "C", 2 },
+            { "D", 3 },
+            { "E", 4 },
+            { "F", 5 },
+            { "G", 6 },
+            { "H", 7 }
+        };
+
+        string userMove = AnsiConsole.Prompt(
+            new TextPrompt<string>(
+                "Enter the coordinate of the piece you would like to move. Use the form [letter][number]"
+            )
+                .PromptStyle("green")
+                .ValidationErrorMessage(
+                    "Invalid input. Please enter a valid coordinate, such as A1 or F3."
+                )
+                .Validate(coordinate =>
+                {
+                    string[] coordinates = coordinate.Split("");
+                    int col = int.Parse(coordinates[1]);
+                    if (coordinates.Length != 2)
+                    {
+                        return ValidationResult.Error(
+                            "Invalid input. Please enter a valid coordinate, such as A1 or F3."
+                        );
+                    }
+                    else if (!letterDictionary.ContainsKey(coordinates[0]))
+                    {
+                        return ValidationResult.Error(
+                            "Invalid input. Please enter a valid coordinate, such as A1 or F3."
+                        );
+                    }
+                    else if (0 < col && col < 9)
+                    {
+                        return ValidationResult.Success();
+                    }
+                    else
+                    {
+                        return ValidationResult.Error(
+                            "Invalid input. Please enter a valid coordinate, such as A1 or F3."
+                        );
+                    }
+                })
+        );
+
+        string[] splitUserMove = userMove.Split("");
+
+        return (letterDictionary[splitUserMove[0]], int.Parse(splitUserMove[1]));
+    }
 }

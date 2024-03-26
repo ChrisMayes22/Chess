@@ -3,9 +3,12 @@ using ChessPieces;
 
 namespace ChessPieces
 {
-    public class King(string color, int row, int col) : Piece(color, row, col)
+    public class King : Piece
     {
-        private string color = color;
-        private string character = (color == "white") ? " ♔ " : " ♚ ";
+        public King(int row, int col, string color)
+            : base(row, col)
+        {
+            this.Character = (color == "white") ? " ♕ " : " ♛ ";
+        }
     }
 }
