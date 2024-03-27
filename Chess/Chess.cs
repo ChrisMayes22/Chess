@@ -127,9 +127,17 @@ class GameManager
         return (letterDictionary[splitUserMove[0]], int.Parse(splitUserMove[1]));
     }
 
-    private static bool Validate(string input)
+    internal static bool Validate(string input)
     {
+        if (input == null)
+        {
+            AnsiConsole.WriteLine("Null cannot be an input. Please enter a valid coordinate, such as A1 or F3.");
+            return false;
+        }
+
+        input = input.ToUpper();
         string letters = "ABCDEFGH";
+
         // Check if the input is the right length
         if (input.Length != 2)
         {
