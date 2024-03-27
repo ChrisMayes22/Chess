@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{3E9B2F07-8E57-462F-9521-8E5BC13DB235}|Default">
+  <MonoDevelop.Ide.ItemProperties.Chess PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pieces/Piece.cs">
+    <Files>
+      <File FileName="Pieces/King.cs" />
+      <File FileName="Chess.cs" />
+      <File FileName="../../../Downloads/GitHub.Copilot.Vsix.1.156.0.0.vsix" />
+      <File FileName="Pieces/Piece.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Chess">
+            <Node name="Chess">
+              <Node name="Pieces" expanded="True">
+                <Node name="Piece.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
