@@ -1,6 +1,7 @@
 using System;
 using System.Reflection.PortableExecutable;
 using ChessPieces;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Spectre.Console;
 using Spectre.Console.Rendering;
 
@@ -8,7 +9,7 @@ class Program
 {
     static void Main()
     {
-        new Board().DrawBoard();
+        GameManager.TakeTurn("white", new Board());
     }
 }
 
@@ -107,45 +108,53 @@ class GameManager
             { "H", 7 }
         };
 
-        string userMove = AnsiConsole.Prompt(
-            new TextPrompt<string>(
-                "Enter the coordinate of the piece you would like to move. Use the form [letter][number]"
-            )
-                .PromptStyle("green")
-                .ValidationErrorMessage(
-                    "Invalid input. Please enter a valid coordinate, such as A1 or F3."
-                )
-                .Validate(coordinate =>
-                {
-                    string[] coordinates = coordinate.Split("");
-                    int col = int.Parse(coordinates[1]);
-                    if (coordinates.Length != 2)
-                    {
-                        return ValidationResult.Error(
-                            "Invalid input. Please enter a valid coordinate, such as A1 or F3."
-                        );
-                    }
-                    else if (!letterDictionary.ContainsKey(coordinates[0]))
-                    {
-                        return ValidationResult.Error(
-                            "Invalid input. Please enter a valid coordinate, such as A1 or F3."
-                        );
-                    }
-                    else if (0 < col && col < 9)
-                    {
-                        return ValidationResult.Success();
-                    }
-                    else
-                    {
-                        return ValidationResult.Error(
-                            "Invalid input. Please enter a valid coordinate, such as A1 or F3."
-                        );
-                    }
-                })
-        );
+        bool haveResult = false;
+        string userMove = "null";
 
-        string[] splitUserMove = userMove.Split("");
+        while(!haveResult){
+            userMove = AnsiConsole.Prompt(
+                new TextPrompt<string>(
+                    "Enter the coordinate of the piece you would like to move. Use the form 'letter number' as in F3 or A2"
+                )
+                    .PromptStyle("green")
+            ).ToUpper();
+            haveResult = Validate(userMove);
+        }
+        
+
+        string[] splitUserMove = userMove.ToCharArray().Select(c => c.ToString()).ToArray();
 
         return (letterDictionary[splitUserMove[0]], int.Parse(splitUserMove[1]));
+    }
+
+    private static bool Validate(string input)
+    {
+        string letters = "ABCDEFGH";
+        // Check if the input is the right length
+        if (input.Length != 2)
+        {
+            AnsiConsole.WriteLine($"Too many characters in input {input}. Please enter a valid coordinate, such as A1 or F3.");
+            return false;
+        }
+
+        // Check if the first input is a letter
+        if (!letters.Contains(input[0]))
+        {
+            AnsiConsole.WriteLine($"Invalid letter {input[0]} from {input}. Please enter a valid coordinate, such as A1 or F3.");
+            return false;
+        }
+
+        // Check if the second input is a digit where 0 < digit < 9
+        if (!char.IsDigit(input[1]))
+        {
+            AnsiConsole.WriteLine($"{input[1]} from {input} is not a digit. Please enter a valid coordinate, such as A1 or F3.");
+            return false;
+        }
+        if (!(input[1] - '0' < 9 && input[1] - '0' > 0))
+        {
+            AnsiConsole.WriteLine($"{input[1]} from {input} is not in the range 1-8. Please enter a valid coordinate, such as A1 or F3.");
+            return false;
+        }
+        return true;
     }
 }

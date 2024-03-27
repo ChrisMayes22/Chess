@@ -1,5 +1,4 @@
 using System;
-using System.Reflection.PortableExecutable;
 
 namespace ChessPieces
 {
@@ -21,6 +20,5 @@ namespace ChessPieces
         }
 
         // public abstract void Move();
-        // public abstract void Capture();
     }
 };
